@@ -1,0 +1,65 @@
+# NOTE01: Be sure to modify your /etc/ansible/hosts file to include your hosts!
+# NOTE02: Be sure to ssh-add private key!
+---
+- hosts: local
+  become: true
+  tasks:
+#  - name: Upgrade all installed packages for Debian and Ubuntu
+#    apt:
+#      upgrade: full
+#      force_apt_get: yes
+#    when: ansible_distribution == "Ubuntu" or ansible_distribution == "Debian"
+#
+#  - name: Install my list of packages
+#    apt: name={{item}} state=present
+#    with_items:
+#         - zfsutils-linux
+#         - keepassx
+#         - kdeconnect
+#         - git
+#         - maven
+#         - openjdk-8-jdk
+#         - openjdk-11-jdk
+#         - procyon-decompiler
+#         - qbittorrent
+#         - vlc
+#         - vim
+#         - speedcrunch
+#         - python3-pip
+#         - hexchat
+#         - gimp
+#         - awscli
+#         - gparted
+#         - virtualenv
+#         - yakuake
+#         - yakuake
+#         - tree
+#         - openssh-server
+#         - gnome-multi-writer
+#         - autossh
+#         - tmux
+#    when: ansible_distribution == "Ubuntu" or ansible_distribution == "Debian"
+  - name: Upgrade all packages on Fedora
+    dnf:
+      name: "*"
+      state: latest
+    when: ansible_distribution == "Fedora"
+  - name: Install my packages
+    package:
+      name:
+        - vim
+        - curl
+        - git
+        - tmux
+        - cmake
+        - python-devel
+      state: latest
+    when: ansible_distribution == "Fedora"
+  - name: Clone dotfiles from gitlab
+    become: rmanak
+    git:
+      repo: 'git@gitlab.com:RadekManak/dotfiles.git'
+      dest: '/home/rmanak/.dotfiles'
+      key_file: '/home/rmanak/.ssh/id_rsa'
+      accept_hostkey: yes
+      recursive: yes
