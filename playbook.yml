@@ -88,3 +88,9 @@
     tags: dotbot
     become: rmanak
     command: bash /home/rmanak/.dotfiles/install
+  - name: Install vundle and vim plugins
+    become: rmanak
+    tags: setupvim
+    shell: vim -E -c 'source ~/.vimrc' -c 'PluginInstall' -c 'qa!'
+    failed_when: false # Vim exits with code 1. Let's just hope it worked.
+    changed_when: false
