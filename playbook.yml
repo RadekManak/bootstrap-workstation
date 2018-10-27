@@ -55,6 +55,16 @@
         - python-devel
       state: latest
     when: ansible_distribution == "Fedora"
+  - name: Enable i3-gaps copr repo
+    yum_repository:
+      name: i3-gaps_nforro
+      description: Copr repo for i3-gaps owned by nforro
+      baseurl: https://copr-be.cloud.fedoraproject.org/results/nforro/i3-gaps/fedora-$releasever-$basearch/
+      enabled: yes
+  - name: Install i3-gaps
+    package:
+      name:
+        - i3-gaps
   - name: Clone dotfiles from gitlab
     tags: dotbot
     become: rmanak
