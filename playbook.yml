@@ -80,8 +80,8 @@
     become: rmanak
     git:
       repo: 'git@gitlab.com:RadekManak/dotfiles.git'
-      dest: '/home/rmanak/.dotfiles'
-      key_file: '/home/rmanak/.ssh/id_rsa'
+      dest: '~/.dotfiles'
+      key_file: '~/.ssh/id_rsa'
       accept_hostkey: yes
       recursive: yes
   - name: run dotbot
