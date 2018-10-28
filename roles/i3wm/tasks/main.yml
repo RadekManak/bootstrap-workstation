@@ -1,0 +1,19 @@
+---
+- name: Enable i3-gaps copr repo
+  yum_repository:
+    name: i3-gaps_nforro
+    description: Copr repo for i3-gaps owned by nforro
+    baseurl: https://copr-be.cloud.fedoraproject.org/results/nforro/i3-gaps/fedora-$releasever-$basearch/
+    enabled: yes
+- name: Install i3-gaps
+  package:
+    name:
+      - i3-gaps
+    state: latest
+- name: Install software for i3wm
+  package:
+    name:
+      - volumeicon
+      - xscreensaver
+      - light
+      - compton

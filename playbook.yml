@@ -1,59 +1,10 @@
 ---
-- hosts: local
+- name: Provision my fedora workstation
+  hosts: local
   become: true
-  tasks:
-  - name: Upgrade all packages on Fedora
-    dnf:
-      name: "*"
-      state: latest
-    when: ansible_distribution == "Fedora"
-  - name: Install my packages
-    package:
-      name:
-        - vim
-        - curl
-        - git
-        - tmux
-        - cmake
-        - python-devel
-      state: latest
-    when: ansible_distribution == "Fedora"
-  - name: Enable i3-gaps copr repo
-    yum_repository:
-      name: i3-gaps_nforro
-      description: Copr repo for i3-gaps owned by nforro
-      baseurl: https://copr-be.cloud.fedoraproject.org/results/nforro/i3-gaps/fedora-$releasever-$basearch/
-      enabled: yes
-  - name: Install i3-gaps
-    package:
-      name:
-        - i3-gaps
-  - name: Enable heliocastro-hack-fonts copr repo
-    yum_repository:
-      name: heliocastro-hack-fonts
-      description: Copr repo for hack-fonts owned by heliocastro
-      baseurl: https://copr-be.cloud.fedoraproject.org/results/heliocastro/hack-fonts/fedora-$releasever-$basearch/
-      enabled: yes
-  - name: Install hack-fonts
-    package:
-      name:
-        - hack-fonts
-  - name: Clone dotfiles from gitlab
-    tags: dotbot
-    become: rmanak
-    git:
-      repo: 'git@gitlab.com:RadekManak/dotfiles.git'
-      dest: '~/.dotfiles'
-      key_file: '~/.ssh/id_rsa'
-      accept_hostkey: yes
-      recursive: yes
-  - name: run dotbot
-    tags: dotbot
-    become: rmanak
-    command: bash /home/rmanak/.dotfiles/install
-  - name: Install vundle and vim plugins
-    become: rmanak
-    tags: setupvim
-    shell: vim -E -c 'source ~/.vimrc' -c 'PluginInstall' -c 'qa!'
-    failed_when: false # Vim exits with code 1. Let's just hope it worked.
-    changed_when: false
+  vars:
+    user: rmanak
+  roles:
+  - core
+  - i3wm
+  - user
