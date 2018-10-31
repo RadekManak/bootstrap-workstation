@@ -26,6 +26,7 @@
       - cmake
       - gcc-c++
       - make
+      - python2-devel
       - python3-devel
 - name: Install YouCompleteMe vim plugin
   become: "{{ user }}"
