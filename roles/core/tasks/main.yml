@@ -12,6 +12,7 @@
       - git
       - tmux
       - htop
+      - keepassxc
     state: latest
   when: ansible_distribution == "Fedora"
 - name: Enable heliocastro-hack-fonts copr repo
