@@ -35,5 +35,20 @@
       - abiword
       - gnumeric
       - transmission
-    state:
+    state: absent
   when: ansible_distribution == "Fedora"
+
+- name: get the rpm package facts
+  package_facts:
+    manager: "auto"
+
+- name: turn on numlock in lightdm
+  lineinfile:
+    path: "/etc/lightdm/lightdm.conf"
+    regexp: '^#greeter-setup-script=$'
+    state: present
+    line: "greeter-setup-script=/usr/bin/numlockx on"
+    backrefs: true
+  when: '"lightdm" in ansible_facts.packages'
+  notify:
+    - Install numlockx
