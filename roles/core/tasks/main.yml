@@ -14,5 +14,26 @@
       - htop
       - keepassxc
       - flatpak
+      - kdeconnectd
+      - maven
+      - java-1.8.0-openjdk-devel
+      - qbittorrent
+      - speedcrunch
+      - hexchat
+#      - gimp #conflicts with mypaint on F29 https://bugzilla.redhat.com/show_bug.cgi?id=1633009
+      - mypaint
+      - gparted
+      - gnome-multi-writer
+      - libreoffice
     state: latest
+  when: ansible_distribution == "Fedora"
+- name: Remove preinstalled software
+  package:
+    name:
+      - parole
+      - pragha
+      - abiword
+      - gnumeric
+      - transmission
+    state:
   when: ansible_distribution == "Fedora"
