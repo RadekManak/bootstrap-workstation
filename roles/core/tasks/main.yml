@@ -16,13 +16,3 @@
       - flatpak
     state: latest
   when: ansible_distribution == "Fedora"
-- name: Enable heliocastro-hack-fonts copr repo
-  yum_repository:
-    name: heliocastro-hack-fonts
-    description: Copr repo for hack-fonts owned by heliocastro
-    baseurl: https://copr-be.cloud.fedoraproject.org/results/heliocastro/hack-fonts/fedora-$releasever-$basearch/
-    enabled: yes
-- name: Install hack-fonts
-  package:
-    name:
-      - hack-fonts
