@@ -1,10 +1,11 @@
 ---
 - name: Provision my fedora workstation
-  hosts: local
+  hosts: localhost
   become: true
   vars:
     user: rmanak
   roles:
-  - core
-  - i3wm
-  - user
+    - sourcejedi.rpmfusion-nonfree
+    - core
+    - i3wm
+    - user
