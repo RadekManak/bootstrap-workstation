@@ -54,3 +54,16 @@
   when: '"lightdm" in ansible_facts.packages'
   notify:
     - Install numlockx
+- name: Add the flathub flatpak repository
+  flatpak_remote:
+    name: flathub
+    state: present
+    flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
+- name: install vlc from flathub
+  flatpak:
+    name: com.spotify.Client
+    state: present
+- name: install GIMP from flathub
+  flatpak:
+    name: org.gimp.GIMP
+    state: present
