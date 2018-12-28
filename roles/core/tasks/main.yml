@@ -30,6 +30,7 @@
       - youtube-dl
       - chromium
       - firefox
+      - spectacle
     state: latest
   when: ansible_distribution == "Fedora"
 - name: Remove preinstalled software
