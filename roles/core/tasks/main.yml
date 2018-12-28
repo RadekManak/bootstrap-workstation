@@ -25,6 +25,8 @@
       - gparted
       - gnome-multi-writer
       - libreoffice
+      - breeze-cursor-theme
+      - numix-icon-theme-circle
     state: latest
   when: ansible_distribution == "Fedora"
 - name: Remove preinstalled software
