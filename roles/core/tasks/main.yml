@@ -27,6 +27,9 @@
       - libreoffice
       - breeze-cursor-theme
       - numix-icon-theme-circle
+      - youtube-dl
+      - chromium
+      - firefox
     state: latest
   when: ansible_distribution == "Fedora"
 - name: Remove preinstalled software
