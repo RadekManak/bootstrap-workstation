@@ -1,6 +1,7 @@
 ---
 - name: Upgrade all packages on Fedora
   dnf:
+    update_cache: yes
     name: "*"
     state: latest
   when: ansible_distribution == "Fedora"
