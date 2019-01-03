@@ -9,6 +9,7 @@
   package:
     name:
       - vim
+      - gvim
       - curl
       - git
       - tmux
