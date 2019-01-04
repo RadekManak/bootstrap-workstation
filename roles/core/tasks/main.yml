@@ -33,6 +33,7 @@
       - chromium
       - firefox
       - spectacle
+      - dropbox
     state: latest
   when: ansible_distribution == "Fedora"
 - name: Remove preinstalled software
