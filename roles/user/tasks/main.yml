@@ -3,7 +3,7 @@
   become: "{{ user }}"
   tags: dotbot
   git:
-    repo: 'git@github.com:RadekManak/dotfiles.git'
+    repo: 'https://github.com/RadekManak/dotfiles.git'
     dest: '~/.dotfiles'
     key_file: '~/.ssh/id_rsa'
     accept_hostkey: yes
