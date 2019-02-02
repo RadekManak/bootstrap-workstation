@@ -1,0 +1,22 @@
+---
+- name: set arc-dark theme
+  become: "{{ user }}"
+  xfconf:
+    channel: "xsettings"
+    property: "/Net/ThemeName"
+    value_type: "string"
+    value: "Arc-Dark"
+- name: set numix circle icon theme
+  become: "{{ user }}"
+  xfconf:
+    channel: "xsettings"
+    property: "/Net/IconThemeName"
+    value_type: "string"
+    value: "Numix-Circle"
+- name: set breeze-snow cursor theme
+  become: "{{ user }}"
+  xfconf:
+    channel: "xsettings"
+    property: "/Gtk/CursorThemeName"
+    value_type: "string"
+    value: "Breeze_Snow"
