@@ -1,0 +1,13 @@
+---
+- name: Provision my fedora desktop
+  hosts: localhost
+  become: true
+  vars:
+    user: rmanak
+  roles:
+    - sourcejedi.rpmfusion-nonfree
+    - core
+    - user
+    #- xfce
+    #- i3wm
+    - btrfs_vault
