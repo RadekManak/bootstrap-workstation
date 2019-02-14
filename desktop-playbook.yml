@@ -1,6 +1,6 @@
 ---
 - name: Provision my fedora desktop
-  hosts: localhost
+  hosts: workstation
   become: true
   vars:
     user: rmanak

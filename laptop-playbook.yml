@@ -1,6 +1,6 @@
 ---
 - name: Provision my fedora laptop
-  hosts: localhost
+  hosts: workstation
   become: true
   vars:
     user: rmanak
@@ -8,6 +8,4 @@
     - sourcejedi.rpmfusion-nonfree
     - core
     - user
-#    - xfce
     - i3wm
-    #- btrfs_vault

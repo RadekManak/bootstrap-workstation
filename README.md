@@ -1,13 +1,22 @@
 # bootstrap-workstation
-Ansible playbook for provisioning my fedora workstation.
-
-I got tired configuring the same things every time I do new install.
-This repo is mainly for my personal use. You probably don't want to run it on your system, but feel free user parts of it in your project.
-
-It expects Fedora XFCE as a base.
+Ansible playbook for provisioning my fedora workstations.
 
 ### Install
+Install `ansible` and `git`
+```
+dnf -y install ansible git
+```
+Clone this repository
+```
+git clone https://github.com/RadekManak/bootstrap-workstation.git ~/.bootstrap
+cd ~/.bootstrap
+```
+Install ansible node dependencies
+```
+ansible-playbook bootstrap-playbook.yml -i inventory.txt
+```
+Install dependencies from ansible-galaxy and run playbook.
 ```
 ansible-galaxy install -r requirements.yml
-ansible-playbook playbook.yml --ask-become-pass
+ansible-playbook desktop-playbook.yml --ask-become-pass -i inventory.txt
 ```

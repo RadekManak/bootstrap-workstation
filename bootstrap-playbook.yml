@@ -1,7 +1,6 @@
----
-- name: install ansible on node for ansible pull
-  hosts: localhost
-  gather_facts: no
-  become: true
-  roles:
-    - first_run
+hosts: workstation
+gather_facts: no
+become: true
+tasks:
+  - name: install python and deps for ansible modules
+    raw: dnf install -y python3 python3-dnf python3-libselinux python3-libsemanage python3-firewall

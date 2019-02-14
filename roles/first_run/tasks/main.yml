@@ -1,8 +1,0 @@
----
-- name: attempt to install Python on fedora
-  raw: test -e /usr/bin/dnf && dnf groupinstall -y "ansible node"
-  ignore_errors: yes
-- name: Install ansible
-  package:
-    name:
-      ansible
