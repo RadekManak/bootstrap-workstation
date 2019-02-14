@@ -51,7 +51,7 @@
   when: '"lightdm" in ansible_facts.packages'
   notify:
     - Install numlockx
-- name: install python and deps for ansible modules
+- name: Add the flathub flatpak repository
   raw: flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 # Broken in latest ansible
 #  flatpak_remote:
