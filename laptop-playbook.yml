@@ -8,6 +8,6 @@
     - sourcejedi.rpmfusion-nonfree
     - core
     - user
-    - xfce
+#    - xfce
     - i3wm
     #- btrfs_vault
