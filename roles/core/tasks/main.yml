@@ -51,11 +51,13 @@
   when: '"lightdm" in ansible_facts.packages'
   notify:
     - Install numlockx
-- name: Add the flathub flatpak repository
-  flatpak_remote:
-    name: flathub
-    state: present
-    flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
+- name: install python and deps for ansible modules
+  raw: flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+# Broken in latest ansible
+#  flatpak_remote:
+#    name: flathub
+#    state: present
+#    flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
 - name: install vlc from flathub
   flatpak:
     name: com.spotify.Client
