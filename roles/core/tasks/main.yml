@@ -37,17 +37,6 @@
       - ImageMagick
     state: latest
   when: ansible_distribution == "Fedora"
-- name: Remove preinstalled software
-  package:
-    name:
-      - parole
-      - pragha
-      - abiword
-      - gnumeric
-      - transmission
-    state: absent
-  when: ansible_distribution == "Fedora"
-
 - name: get the rpm package facts
   package_facts:
     manager: "auto"
