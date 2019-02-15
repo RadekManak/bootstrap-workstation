@@ -7,5 +7,7 @@
   roles:
     - sourcejedi.rpmfusion-nonfree
     - core
-    - user
+    - desktops
+    - laptops
     - i3wm
+    - user

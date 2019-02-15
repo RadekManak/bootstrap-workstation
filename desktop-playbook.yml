@@ -7,7 +7,6 @@
   roles:
     - sourcejedi.rpmfusion-nonfree
     - core
-    - user
-    #- xfce
-    #- i3wm
     - btrfs_vault
+    - desktops
+    - user

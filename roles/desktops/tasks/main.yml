@@ -1,0 +1,53 @@
+---
+- name: These packages should be installed on all desktops
+  package:
+    name:
+      - plymouth-theme-charge
+      - lightdm
+      - slick-greeter
+      - pulseaudio
+      - gvim
+      - keepassxc
+      - flatpak
+      - kdeconnectd
+      - maven
+      - java-1.8.0-openjdk-devel
+      - qbittorrent
+      - speedcrunch
+      - hexchat
+      #- gimp #conflicts with mypaint on F29 https://bugzilla.redhat.com/show_bug.cgi?id=1633009
+      - mypaint
+      - gparted
+      - gnome-multi-writer
+      - libreoffice
+      - breeze-cursor-theme
+      - numix-icon-theme-circle
+      - youtube-dl
+      - chromium
+      - firefox
+      - spectacle
+      - dropbox
+      - ImageMagick
+    state: present
+
+- name: Ensure system boots into graphical.target
+  command: "systemctl set-default graphical.target"
+  register: default_target_result
+  changed_when: "default_target_result.stderr is search('Created symlink')"
+
+- name: Add the flathub flatpak repository
+  command: flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+# Broken in latest ansible
+#  flatpak_remote:
+#    name: flathub
+#    state: present
+#    flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
+
+- name: install vlc from flathub
+  flatpak:
+    name: com.spotify.Client
+    state: present
+- name: install GIMP from flathub
+  flatpak:
+    name: org.gimp.GIMP
+    state: present

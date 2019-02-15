@@ -5,64 +5,13 @@
     name: "*"
     state: latest
   when: ansible_distribution == "Fedora"
-- name: Install my packages
+
+- name: These packages should be installed on every system
   package:
     name:
       - vim
-      - gvim
       - curl
       - git
       - tmux
       - htop
-      - keepassxc
-      - flatpak
-      - kdeconnectd
-      - maven
-      - java-1.8.0-openjdk-devel
-      - qbittorrent
-      - speedcrunch
-      - hexchat
-#      - gimp #conflicts with mypaint on F29 https://bugzilla.redhat.com/show_bug.cgi?id=1633009
-      - mypaint
-      - gparted
-      - gnome-multi-writer
-      - libreoffice
-      - breeze-cursor-theme
-      - numix-icon-theme-circle
-      - youtube-dl
-      - chromium
-      - firefox
-      - spectacle
-      - dropbox
-      - ImageMagick
-    state: latest
-  when: ansible_distribution == "Fedora"
-- name: get the rpm package facts
-  package_facts:
-    manager: "auto"
-
-- name: turn on numlock in lightdm
-  lineinfile:
-    path: "/etc/lightdm/lightdm.conf"
-    regexp: '^#greeter-setup-script=$'
-    state: present
-    line: "greeter-setup-script=/usr/bin/numlockx on"
-    backrefs: true
-  when: '"lightdm" in ansible_facts.packages'
-  notify:
-    - Install numlockx
-- name: Add the flathub flatpak repository
-  raw: flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-# Broken in latest ansible
-#  flatpak_remote:
-#    name: flathub
-#    state: present
-#    flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
-- name: install vlc from flathub
-  flatpak:
-    name: com.spotify.Client
-    state: present
-- name: install GIMP from flathub
-  flatpak:
-    name: org.gimp.GIMP
     state: present
