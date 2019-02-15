@@ -1,6 +1,0 @@
----
-- name: Install numlockx
-  dnf:
-    name:
-      - numlockx
-    state: latest
