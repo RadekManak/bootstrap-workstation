@@ -5,22 +5,37 @@
     description: Copr repo for i3-gaps owned by nforro
     baseurl: https://copr-be.cloud.fedoraproject.org/results/nforro/i3-gaps/fedora-$releasever-$basearch/
     enabled: yes
+
 - name: Install i3-gaps
   package:
     name:
       - i3-gaps
     state: present
+
 - name: Enable vladius/polybar copr repo
   yum_repository:
     name: polybar_vladius
     description: Copr repo for polybar owned by vladius
     baseurl: https://copr-be.cloud.fedoraproject.org/results/vladius/polybar/fedora-$releasever-$basearch/
     enabled: yes
+
 - name: Install polybar
   package:
     name:
       - polybar
     state: present
+
+- name: Check that the playerctl is installed
+  stat:
+    path: /usr/bin/playerctl
+  register: playerctl_installed
+
+- name: Install playerctl
+  dnf:
+    name: "https://github.com/acrisci/playerctl/releases/download/v2.0.1/playerctl-2.0.1_x86_64.rpm"
+    state: present
+  when: playerctl_installed.stat.exists == false
+
 - name: Install software for i3wm
   package:
     name:
