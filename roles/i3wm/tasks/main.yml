@@ -9,7 +9,18 @@
   package:
     name:
       - i3-gaps
-    state: latest
+    state: present
+- name: Enable vladius/polybar copr repo
+  yum_repository:
+    name: polybar_vladius
+    description: Copr repo for polybar owned by vladius
+    baseurl: https://copr-be.cloud.fedoraproject.org/results/vladius/polybar/fedora-$releasever-$basearch/
+    enabled: yes
+- name: Install polybar
+  package:
+    name:
+      - polybar
+    state: present
 - name: Install software for i3wm
   package:
     name:
@@ -20,3 +31,4 @@
       - nitrogen
       - lxappearance
       - ranger
+      - network-manager-applet
