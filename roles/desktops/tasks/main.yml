@@ -28,6 +28,7 @@
       - spectacle
       - dropbox
       - ImageMagick
+      - calibre
     state: present
 
 - name: Ensure system boots into graphical.target
