@@ -29,6 +29,7 @@
       - dropbox
       - ImageMagick
       - calibre
+      - NetworkManager-tui
     state: present
 
 - name: Ensure system boots into graphical.target
@@ -52,3 +53,4 @@
   flatpak:
     name: org.gimp.GIMP
     state: present
+

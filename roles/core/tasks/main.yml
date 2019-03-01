@@ -9,7 +9,7 @@
 - name: These packages should be installed on every system
   package:
     name:
-      - vim
+      - neovim
       - curl
       - git
       - tmux
