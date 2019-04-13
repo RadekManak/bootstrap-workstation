@@ -12,10 +12,10 @@
   become: "{{ user }}"
   tags: dotbot
   command: bash ~/.dotfiles/install
-- name: Install vundle and vim plugins
+  - name: Install vim-plug and vim plugins
   become: "{{ user }}"
   tags: setupvim
-  shell: vim -E -c 'source ~/.vimrc' -c 'PluginInstall' -c 'qa!'
+  shell: vim -E -c 'source ~/.vimrc' -c 'PlugInstall' -c 'qa!'
   failed_when: false # Vim exits with code 1. Let's just hope it worked.
   changed_when: false
 - name: Install YouCompleteMe dependencies
@@ -26,11 +26,10 @@
       - cmake
       - gcc-c++
       - make
-      - python2-devel
       - python3-devel
 - name: Install YouCompleteMe vim plugin
   become: "{{ user }}"
   tags: setupvim
-  command: "~/.vim/bundle/YouCompleteMe/install.py --clang-completer"
+  command: "~/.vim/plugged/YouCompleteMe/install.py --clang-completer"
   args:
-    creates: "~/.vim/bundle/YouCompleteMe/third_party/ycmd/ycm_core.so"
+    creates: "~/.vim/plugged/YouCompleteMe/third_party/ycmd/ycm_core.so"
