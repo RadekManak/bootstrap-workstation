@@ -9,7 +9,7 @@
       - gvim
       - keepassxc
       - flatpak
-      - kdeconnectd
+      - kde-connect
       - maven
       - java-1.8.0-openjdk-devel
       - qbittorrent
@@ -30,6 +30,8 @@
       - ImageMagick
       - calibre
       - NetworkManager-tui
+      - plasma-breeze
+      - xdg-utils
     state: present
 
 - name: Ensure system boots into graphical.target
