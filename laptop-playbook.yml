@@ -5,7 +5,6 @@
   vars:
     user: rmanak
   roles:
-    - sourcejedi.rpmfusion-nonfree
     - core
     - desktops
     - laptops

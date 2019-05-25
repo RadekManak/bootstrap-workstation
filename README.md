@@ -13,10 +13,9 @@ cd ~/.bootstrap
 ```
 Install ansible node dependencies
 ```
-ansible-playbook bootstrap-playbook.yml -i inventory.txt
+ansible-playbook bootstrap-playbook.yml -i inventory.txt --ask-become-pass
 ```
-Install dependencies from ansible-galaxy and run playbook.
+Run playbook.
 ```
-ansible-galaxy install -r requirements.yml
 ansible-playbook desktop-playbook.yml --ask-become-pass -i inventory.txt
 ```

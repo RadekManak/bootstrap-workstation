@@ -8,16 +8,19 @@
     key_file: '~/.ssh/id_rsa'
     accept_hostkey: yes
     recursive: yes
+
 - name: run dotbot
   become: "{{ user }}"
   tags: dotbot
   command: bash ~/.dotfiles/install
-  - name: Install vim-plug and vim plugins
+
+- name: Install vim-plug and vim plugins
   become: "{{ user }}"
   tags: setupvim
   shell: vim -E -c 'source ~/.vimrc' -c 'PlugInstall' -c 'qa!'
   failed_when: false # Vim exits with code 1. Let's just hope it worked.
   changed_when: false
+
 - name: Install YouCompleteMe dependencies
   tags: setupvim
   become: true
@@ -26,6 +29,7 @@
       - cmake
       - gcc-c++
       - make
+      - python2-devel
       - python3-devel
 - name: Install YouCompleteMe vim plugin
   become: "{{ user }}"

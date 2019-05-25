@@ -6,6 +6,13 @@
     state: latest
   when: ansible_distribution == "Fedora"
 
+- name: Enable rpm fusion
+  dnf:
+    name:
+      - https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-{{ ansible_distribution_major_version }}.noarch.rpm
+      - https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-{{ ansible_distribution_major_version }}.noarch.rpm
+    state: present
+
 - name: These packages should be installed on every system
   package:
     name:

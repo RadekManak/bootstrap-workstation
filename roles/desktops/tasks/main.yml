@@ -6,6 +6,7 @@
       - lightdm
       - slick-greeter
       - pulseaudio
+      - vim
       - gvim
       - keepassxc
       - flatpak

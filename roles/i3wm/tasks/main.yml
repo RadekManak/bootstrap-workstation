@@ -12,11 +12,11 @@
       - i3-gaps
     state: present
 
-- name: Enable vladius/polybar copr repo
+- name: Enable mhartgring/polybar copr repo
   yum_repository:
-    name: polybar_vladius
-    description: Copr repo for polybar owned by vladius
-    baseurl: https://copr-be.cloud.fedoraproject.org/results/vladius/polybar/fedora-$releasever-$basearch/
+    name: mhartgring_vladius
+    description: Copr repo for polybar owned by mhartgring
+    baseurl: https://copr-be.cloud.fedoraproject.org/results/mhartgring/polybar/fedora-$releasever-$basearch/
     enabled: yes
 
 - name: Install polybar
@@ -48,3 +48,5 @@
       - ranger
       - network-manager-applet
       - dunst
+      - xfce4-terminal
+      - arandr
