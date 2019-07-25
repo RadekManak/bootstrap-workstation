@@ -1,4 +1,4 @@
-- name: Install wifi tools
+- name: Install software for laptops
   package:
     name:
      - NetworkManager-wifi

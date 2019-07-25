@@ -30,6 +30,7 @@
       - dropbox
       - ImageMagick
       - calibre
+      - vlc
       - NetworkManager-tui
       - plasma-breeze
       - xdg-utils
@@ -40,18 +41,28 @@
   register: default_target_result
   changed_when: "default_target_result.stderr is search('Created symlink')"
 
-- name: Add the flathub flatpak repository
-  command: flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-# Broken in latest ansible
-#  flatpak_remote:
-#    name: flathub
-#    state: present
-#    flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
+- name: Enable taw/Riot copr repo
+  yum_repository:
+    name: riot_Taw
+    description: Copr repo for Riot owned by taw
+    baseurl: https://copr-be.cloud.fedoraproject.org/results/taw/Riot/fedora-$releasever-$basearch/
+    enabled: yes
 
-- name: install vlc from flathub
+- name: Install Riot
+  package:
+    name:
+      - riot
+
+- name: Add the flathub flatpak repository
+  flatpak_remote:
+    name: flathub
+    state: present
+    flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
+
+- name: uninstall spotify from flathub
   flatpak:
     name: com.spotify.Client
-    state: present
+    state: absent
 - name: install GIMP from flathub
   flatpak:
     name: org.gimp.GIMP

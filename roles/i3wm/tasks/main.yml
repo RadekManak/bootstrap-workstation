@@ -1,29 +1,26 @@
 ---
-- name: Enable i3-gaps copr repo
+- name: Enable livegrenier's i3-desktop copr repository
+  yum_repository:
+    name: i3-desktop_livegrenier
+    description: Copr repo for i3-desktop owned by livegrenier
+    baseurl: https://copr-be.cloud.fedoraproject.org/results/livegrenier/i3-desktop/fedora-$releasever-$basearch/
+    gpgcheck: yes
+    gpgkey: https://copr-be.cloud.fedoraproject.org/results/livegrenier/i3-desktop/pubkey.gpg
+    enabled: yes
+
+- name: Disable i3-gaps copr repo
   yum_repository:
     name: i3-gaps_nforro
     description: Copr repo for i3-gaps owned by nforro
     baseurl: https://copr-be.cloud.fedoraproject.org/results/nforro/i3-gaps/fedora-$releasever-$basearch/
-    enabled: yes
+    enabled: no
 
-- name: Install i3-gaps
-  package:
-    name:
-      - i3-gaps
-    state: present
-
-- name: Enable mhartgring/polybar copr repo
+- name: Disable mhartgring/polybar copr repo
   yum_repository:
-    name: mhartgring_vladius
+    name: polybar_mhartgring
     description: Copr repo for polybar owned by mhartgring
     baseurl: https://copr-be.cloud.fedoraproject.org/results/mhartgring/polybar/fedora-$releasever-$basearch/
-    enabled: yes
-
-- name: Install polybar
-  package:
-    name:
-      - polybar
-    state: present
+    enabled: no
 
 - name: Check that the playerctl is installed
   stat:
@@ -39,7 +36,9 @@
 - name: Install software for i3wm
   package:
     name:
-      - volumeicon
+      - autorandr #copr i3-desktop
+      - i3-gaps # copr i3-desktop
+      - polybar # copr i3-desktop
       - xscreensaver
       - light
       - compton
@@ -50,3 +49,5 @@
       - dunst
       - xfce4-terminal
       - arandr
+      - rofi
+      - xorg-x11-xinit-session
