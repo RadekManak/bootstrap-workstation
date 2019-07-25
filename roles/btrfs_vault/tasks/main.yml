@@ -1,17 +1,4 @@
 ---
-- stat:
-    path: /dev/disk/by-uuid/5769b052-b10d-46af-b75f-2eff905e661f
-  register: disk1
-- stat:
-    path: /dev/disk/by-uuid/2d6111da-b8e9-43f4-a00a-a28e3e0e832c
-  register: disk2
-- fail:
-    msg: "Disk WD-WCC4M2ZEA4LC is not connected"
-  when: disk1.stat.exists == False
-- fail:
-    msg: "Disk WWD-WCC4M6DTREAH is not connected"
-  when: disk2.stat.exists == False
-
 - name: create mount directory
   file:
     path: /vault
@@ -21,18 +8,20 @@
     name: "luks-WD-WCC4M2ZEA4LC"
     backing_device: "UUID=73471361-c8ce-4336-8c79-9d37723418f5"
     password: "/etc/luks-keys/vault_luks_key"
-    opts: "luks"
+    opts: "nofail,luks,x-systemd.device-timeout=1ms"
     state: present
 - name: add disk2 to crypttab
   crypttab:
     name: "luks-WD-WCC4M6DTREAH"
     backing_device: "UUID=2d6111da-b8e9-43f4-a00a-a28e3e0e832c"
     password: "/etc/luks-keys/vault_luks_key"
-    opts: "luks"
+    opts: "nofail,luks,x-systemd.device-timeout=1ms"
     state: present
 - name: mount vault and add to fstab
   mount:
     src: "UUID=5769b052-b10d-46af-b75f-2eff905e661f"
     path: "/vault"
     fstype: "btrfs"
+    opts: "nofail,auto,x-systemd.device-timeout=1ms"
     state: mounted
+  changed_when: false
