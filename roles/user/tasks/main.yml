@@ -8,11 +8,15 @@
     key_file: '~/.ssh/id_rsa'
     accept_hostkey: yes
     recursive: yes
+  ignore_errors: yes
 
 - name: run dotbot
   become: "{{ user }}"
   tags: dotbot
   command: bash ~/.dotfiles/install
+  register: dotbot_out
+  changed_when:
+    "'Creating' in dotbot_out.stdout"
 
 - name: Install vim-plug and vim plugins
   become: "{{ user }}"
