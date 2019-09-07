@@ -1,0 +1,39 @@
+---
+- name: Install required packages for bumblebee
+  dnf:
+    name:
+      - xorg-x11-drv-nvidia
+      - xorg-x11-drv-nvidia-cuda
+      - akmod-nvidia
+      - acpi
+    state: present
+
+- name: Enable chenxiaolong/bumblebee copr repository
+  yum_repository:
+    name: chenxiaolong_bumblebee
+    description: Copr repo for bumblebee owned by chenxiaolong
+    baseurl: https://copr-be.cloud.fedoraproject.org/results/chenxiaolong/bumblebee/fedora-$releasever-$basearch/
+    enabled: yes
+
+- name: Install bumblebee
+  dnf:
+    name:
+      - akmod-bbswitch
+      - bumblebee
+      - primus
+
+- name: add "{{ user }}" to bumblebee group
+  user:
+    name: "{{ user }}"
+    groups: bumblebee
+    append: yes
+
+- name: Enable bumblebeed service
+  service:
+    name: bumblebeed.service
+    enabled: yes
+
+- name: mask nvidia-fallback service
+  service:
+    name: nvidia-fallback.service
+    masked: yes
