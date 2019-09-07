@@ -2,9 +2,9 @@
 - name: These packages should be installed on all desktops
   package:
     name:
-      - plymouth-theme-charge
-      - lightdm
-      - slick-greeter
+      #- plymouth-theme-charge
+      #- lightdm
+      #- slick-greeter
       - pulseaudio
       - vim
       - gvim
@@ -34,6 +34,11 @@
       - NetworkManager-tui
       - plasma-breeze
       - xdg-utils
+      - thunderbird
+      - firewall-config
+      - anki
+      - zathura
+      - zathura-plugins-all
     state: present
 
 - name: Ensure system boots into graphical.target
@@ -59,10 +64,6 @@
     state: present
     flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
 
-- name: uninstall spotify from flathub
-  flatpak:
-    name: com.spotify.Client
-    state: absent
 - name: install GIMP from flathub
   flatpak:
     name: org.gimp.GIMP

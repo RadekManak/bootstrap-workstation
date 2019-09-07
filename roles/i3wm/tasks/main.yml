@@ -51,3 +51,4 @@
       - arandr
       - rofi
       - xorg-x11-xinit-session
+      - polkit-gnome
