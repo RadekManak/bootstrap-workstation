@@ -37,6 +37,7 @@
       - thunderbird
       - firewall-config
       - anki
+      - qt-creator
     state: present
 
 - name: Ensure system boots into graphical.target
