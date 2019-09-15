@@ -37,8 +37,6 @@
       - thunderbird
       - firewall-config
       - anki
-      - zathura
-      - zathura-plugins-all
     state: present
 
 - name: Ensure system boots into graphical.target

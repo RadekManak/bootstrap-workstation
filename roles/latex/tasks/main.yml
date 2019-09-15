@@ -1,0 +1,9 @@
+---
+- name: Packages for LaTeX-vim setup
+  package:
+    name:
+      - zathura
+      - zathura-plugins-all
+      - xdotool
+      - texlive-scheme-full
+    state: present
