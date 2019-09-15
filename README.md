@@ -17,5 +17,5 @@ ansible-playbook bootstrap-playbook.yml -i inventory.txt --ask-become-pass
 ```
 Run playbook.
 ```
-ansible-playbook desktop-playbook.yml --ask-become-pass -i inventory.txt
+ansible-playbook laptop-playbook.yml --ask-become-pass -i inventory.txt
 ```
