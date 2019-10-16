@@ -29,7 +29,6 @@
       - spectacle
       - dropbox
       - ImageMagick
-      - calibre
       - vlc
       - NetworkManager-tui
       - plasma-breeze
@@ -66,5 +65,10 @@
 - name: install GIMP from flathub
   flatpak:
     name: org.gimp.GIMP
+    state: present
+
+- name: install Calibre from flathub
+  flatpak:
+    name: com.calibre_ebook.calibre
     state: present
 
