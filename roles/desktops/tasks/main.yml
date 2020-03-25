@@ -37,6 +37,7 @@
       - firewall-config
       - anki
       - qt-creator
+      - virt-manager
     state: present
 
 - name: Ensure system boots into graphical.target
@@ -70,5 +71,10 @@
 - name: install Calibre from flathub
   flatpak:
     name: com.calibre_ebook.calibre
+    state: present
+
+- name: install Discord from flathub
+  flatpak:
+    name: com.discordapp.Discord
     state: present
 
