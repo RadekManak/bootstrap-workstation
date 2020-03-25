@@ -2,9 +2,6 @@
 - name: These packages should be installed on all desktops
   package:
     name:
-      #- plymouth-theme-charge
-      #- lightdm
-      #- slick-greeter
       - pulseaudio
       - vim
       - gvim
@@ -16,8 +13,6 @@
       - qbittorrent
       - speedcrunch
       - hexchat
-      #- gimp #conflicts with mypaint on F29 https://bugzilla.redhat.com/show_bug.cgi?id=1633009
-      - mypaint
       - gparted
       - gnome-multi-writer
       - libreoffice
@@ -66,6 +61,11 @@
 - name: install GIMP from flathub
   flatpak:
     name: org.gimp.GIMP
+    state: present
+
+- name: install mypaint from flathub
+  flatpak:
+    name: org.mypaint.MyPaint
     state: present
 
 - name: install Calibre from flathub
