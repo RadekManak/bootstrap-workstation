@@ -1,0 +1,11 @@
+---
+- name: Ensure dconf is installed
+  package:
+    name:
+      - dconf
+    state:
+      present
+
+- name: Disable that annoyng bell sound
+  command: dconf write /org/gnome/desktop/sound/event-sounds false
+  changed_when: False
